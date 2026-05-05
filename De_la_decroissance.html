@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Traité de Cristallographie — René Just Haüy | Mémoire des formes dérivées du cube</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #faf7f0;
+            color: #1e1b16;
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            line-height: 1.55;
+        }
+
+        /* Typographie élégante */
+        h1, h2, h3, .chapter-number {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: #2a2418;
+            border-bottom: 1px solid #d4c9b5;
+            display: inline-block;
+            padding-bottom: 0.3rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin: 1.5rem 0 1rem;
+            color: #3a2e20;
+            border-left: 4px solid #b88b4a;
+            padding-left: 1rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin: 1.2rem 0 0.8rem;
+            color: #5a4a32;
+        }
+
+        .chapter-number {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #b88b4a;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Mise en page */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem 2rem 4rem;
+        }
+
+        /* En-tête */
+        .title-page {
+            text-align: center;
+            padding: 4rem 2rem 3rem;
+            border-bottom: 2px solid #e8dfd0;
+            margin-bottom: 2rem;
+        }
+
+        .title-page .subtitle {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #7a6a52;
+            margin-top: 1rem;
+        }
+
+        .title-page .author {
+            margin-top: 2rem;
+            font-size: 1rem;
+            letter-spacing: 2px;
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: #faf7f0;
+            border-bottom: 1px solid #e0d5c4;
+            padding: 0.8rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            z-index: 100;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+        }
+        .nav a {
+            color: #5a4a32;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav a:hover {
+            color: #b88b4a;
+        }
+
+        /* Figures et cartes */
+        .figure-card {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin: 2rem 0;
+            overflow: hidden;
+            border: 1px solid #ece3d8;
+        }
+
+        .figure-header {
+            background: #f5efE6;
+            padding: 0.8rem 1.5rem;
+            border-bottom: 1px solid #e0d5c4;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #5a4a32;
+        }
+
+        .canvas-wrapper {
+            padding: 1.5rem;
+            background: #0a0c12;
+            min-height: 400px;
+            position: relative;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            background: #0a0c12;
+            border-radius: 8px;
+        }
+
+        .figure-caption {
+            padding: 0.8rem 1.5rem;
+            font-size: 0.85rem;
+            font-style: italic;
+            color: #7a6a52;
+            background: #faf7f0;
+            border-top: 1px solid #ece3d8;
+        }
+
+        /* Formules */
+        .formula {
+            background: #f5efe6;
+            padding: 1rem 1.5rem;
+            margin: 1.2rem 0;
+            font-family: 'Courier New', 'Fira Code', monospace;
+            font-size: 0.95rem;
+            overflow-x: auto;
+            border-left: 3px solid #b88b4a;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .formula-inline {
+            font-family: 'Courier New', monospace;
+            background: #f0ebe2;
+            padding: 0.1rem 0.3rem;
+            border-radius: 4px;
+        }
+
+        /* Panneaux de contrôle */
+        .control-panel {
+            background: #f5efe6;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .control-group label {
+            font-weight: 500;
+            color: #5a4a32;
+        }
+
+        input[type="range"] {
+            width: 220px;
+            cursor: pointer;
+        }
+
+        input[type="number"] {
+            width: 80px;
+            padding: 0.3rem;
+            border: 1px solid #d4c9b5;
+            border-radius: 6px;
+            font-family: monospace;
+        }
+
+        button {
+            background: #e8dfd0;
+            border: 1px solid #c9b88a;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #3a2e20;
+        }
+
+        button:hover {
+            background: #c9b88a;
+            color: white;
+        }
+
+        .param-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .param-item {
+            background: #f0ebe2;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+
+        .remark {
+            background: #f0ebe2;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 3px solid #b88b4a;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e0d5c4;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #9a8a72;
+            font-family: 'Inter', sans-serif;
+        }
+
+        @media (max-width: 800px) {
+            .container { padding: 1rem; }
+            h1 { font-size: 2rem; }
+            .control-panel { flex-direction: column; align-items: stretch; }
+            .control-group { width: 100%; }
+            input[type="range"] { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="nav">
+    <a href="#intro">Introduction</a>
+    <a href="#cube">Cube</a>
+    <a href="#octaedre">Octaèdre (n=½)</a>
+    <a href="#trapezoedre">Trapézoèdre (n=1)</a>
+    <a href="#formules">Formules générales</a>
+    <a href="#incidences">Incidences u|u, u|u′</a>
+    <a href="#union">Union des formes</a>
+    <a href="#synthese">Synthèse paramétrable</a>
+</div>
+
+<div class="container">
+    <div class="title-page">
+        <div class="chapter-number">TRAITÉ DE CRISTALLOGRAPHIE</div>
+        <h1>DES FORMES DÉRIVÉES<br>DU CUBE</h1>
+        <div class="subtitle">Théorie des décroissements — Mémoire analytique</div>
+        <div class="author">RENÉ JUST HAÜY</div>
+        <div class="subtitle" style="font-size:0.85rem">Mémoire interactif d'après l'édition de 1822</div>
+    </div>
+
+    <!-- INTRODUCTION -->
+    <div id="intro">
+        <h2>§1. Principes généraux</h2>
+        <p>« On sait qu’à mesure qu’une quantité approche de sa limite, d’autres quantités qui en font partie varient par des différences décroissantes, et finissent par devenir égales, à l’endroit où est placée la limite. C’est ce que l’on remarque dans le passage des diverses espèces de parallélépipèdes à la forme cubique. »</p>
+        <p>Le cube est la forme primitive la plus symétrique. Les décroissements – c’est-à-dire la soustraction de <strong>rangées de molécules intégrantes</strong> – agissent sur les angles ou les bords du noyau pour produire des formes secondaires : octaèdre, dodécaèdre rhomboidal, trapézoèdre à 24 faces, etc.</p>
+        <div class="remark">
+            <strong>✧ Notation de Haüy :</strong> Le paramètre <span class="formula-inline">n</span> désigne le nombre de rangées soustraites. Les rapports <span class="formula-inline">g′:p′</span> et <span class="formula-inline">bp:Op</span> déterminent les inclinaisons des nouvelles faces.
+        </div>
+    </div>
+
+    <!-- SECTION 1 : CUBE PRIMITIF -->
+    <div id="cube">
+        <h2>§2. Cube primitif (noyau)</h2>
+        <div class="figure-card">
+            <div class="figure-header">FIGURE 1 — Cube générateur</div>
+            <div class="canvas-wrapper">
+                <canvas id="canvasCube" width="600" height="400" style="width:100%; height:auto; background:#0a0c12"></canvas>
+            </div>
+            <div class="figure-caption">Fig. 1 — Le cube, forme primitive. Faces : P, M, T. Arête a = 1 (unité moléculaire).</div>
+        </div>
+        <div class="formula">
+            <strong>Paramètres fondamentaux</strong><br>
+            Arête du noyau : <em>a</em> = 1<br>
+            Angles dièdres : 90°<br>
+            Symétrie : groupe octaédrique
+        </div>
+    </div>
+
+    <!-- SECTION 2 : OCTAEDRE n=1/2 -->
+    <div id="octaedre">
+        <h2>§3. Octaèdre régulier — Décroissement par une rangée (n = ½)</h2>
+        <p>« Le premier cas donne l’octaèdre régulier » (t. I, p. 145). Lorsque <span class="formula-inline">n = ½</span>, les trois trapézoïdes autour d’un angle solide deviennent coplanaires.</p>
+        <div class="figure-card">
+            <div class="figure-header">FIGURE 2 — Octaèdre régulier</div>
+            <div class="canvas-wrapper">
+                <canvas id="canvasOcta" width="600" height="400" style="width:100%; height:auto"></canvas>
+            </div>
+            <div class="figure-caption">Fig. 2 — Octaèdre : 8 faces triangulaires équilatérales. Incidence c|c = 109°28′16″.</div>
+        </div>
+        <div class="formula">
+            <strong>Pour n = ½</strong><br>
+            \[
+            g' : p' = \sqrt{5} : 1 \quad;\quad bp : Op = 3 : 1
+            \]
+            Angles <span class="formula-inline">rof, roh = 120°</span> → coïncidence des trois trapézoïdes → octaèdre.
+        </div>
+        <div class="remark">
+            <strong>⌘ Exemples :</strong> Fer sulfuré octaèdre, plomb sulfuré, soude muriatée.
+        </div>
+    </div>
+
+    <!-- SECTION 3 : TRAPEZOEDRE n=1 -->
+    <div id="trapezoedre">
+        <h2>§4. Trapézoèdre — Décroissement par deux rangées (n = 1)</h2>
+        <p>« Le second cas donne un solide terminé par 24 trapézoïdes égaux et semblables. » (t. I, p. 145)</p>
+        <div class="figure-card">
+            <div class="figure-header">FIGURE 3 — Trapézoèdre à 24 faces</div>
+            <div class="canvas-wrapper">
+                <canvas id="canvasTrap" width="600" height="400" style="width:100%; height:auto"></canvas>
+            </div>
+            <div class="figure-caption">Fig. 3 — Solide à 24 trapézoïdes (n=1). Fer sulfuré trapézoïdal.</div>
+        </div>
+        <div class="formula">
+            <strong>Pour n = 1</strong><br>
+            \[
+            g' : p' = \sqrt{8} : \sqrt{3} \quad;\quad bp : Op = 2 : 1
+            \]
+            \[
+            pr : bp = \sqrt{2} : \sqrt{3}
+            \]
+        </div>
+        <div class="param-grid">
+            <div class="param-item">Incidence <em>u|u</em> = 146°26′33″</div>
+            <div class="param-item">Incidence <em>u|u′</em> = 131°48′36″</div>
+        </div>
+    </div>
+
+    <!-- SECTION 4 : FORMULES GENERALES -->
+    <div id="formules">
+        <h2>§5. Formules générales des décroissements</h2>
+        <p>« Concevons un décroissement qui agisse, suivant une loi quelconque, sur tous les angles de cette forme primitive. » (p. 5)</p>
+        <div class="formula">
+            <strong>Rapport fondamental (dérivé t. I, p. 311) :</strong><br>
+            \[
+            g' : p' \equiv (n+1)\sqrt{2} : \sqrt{2n^2 + 1}
+            \]
+            <br>
+            \[
+            bp : Op = n+1 : n
+            \]
+        </div>
+        <div class="formula">
+            <strong>Relation dérivée (p. 6) :</strong><br>
+            \[
+            2p'^2 : g'^2 - p'^2 \equiv 4n^2 + 2 : 4n + 1
+            \]
+        </div>
+        <div class="remark">
+            <strong>⌘ Légende :</strong> <em>g′ = pr</em>, <em>p′ = Op</em> (figure 6). <em>n</em> = nombre de rangées soustraites.
+        </div>
+    </div>
+
+    <!-- SECTION 5 : INCIDENCES u|u ET u|u′ -->
+    <div id="incidences">
+        <h2>§6. Incidences des trapézoïdes</h2>
+        
+        <h3>6.1 Incidence <em>u</em> sur <em>u</em></h3>
+        <p>« Ce rapport donne le rapport entre le rayon et le sinus de l’angle qu’il faut ajouter à 90° pour avoir les incidences respectives des trapézoïdes <em>u, u</em>. » (p. 6)</p>
+        <div class="figure-card">
+            <div class="figure-header">FIGURE 6 — Disposition des trapézoïdes autour de l’angle O</div>
+            <div class="canvas-wrapper">
+                <canvas id="canvasSchemaU" width="600" height="350" style="width:100%; height:auto"></canvas>
+            </div>
+            <div class="figure-caption">Fig. 6 — Les trois trapézoïdes <em>u</em> autour de l’angle solide O. Les diagonales <em>fr, fh, hr</em> délimitent un rhomboïde.</div>
+        </div>
+        
+        <h3>6.2 Incidence <em>u</em> sur <em>u′</em></h3>
+        <p>« Soit crfb (fig. 7) la pyramide quadrangulaire... l’angle <em>fyz</em> sera égal à la moitié de l’incidence proposée. »</p>
+        <div class="figure-card">
+            <div class="figure-header">FIGURE 7 — Pyramide quadrangulaire pour l’incidence u|u′</div>
+            <div class="canvas-wrapper">
+                <canvas id="canvasSchemaUp" width="600" height="350" style="width:100%; height:auto"></canvas>
+            </div>
+            <div class="figure-caption">Fig. 7 — Construction géométrique : hauteur <em>bx</em>, perpendiculaire <em>fr</em>, angle <em>fyz</em> = ½ incidence.</div>
+        </div>
+        
+        <div class="formula">
+            <strong>Rapports déduits (p. 7) :</strong><br>
+            \[
+            px : bx = n\sqrt{2} : 1 \quad;\quad rx = 2n
+            \]
+            \[
+            br = \sqrt{4n^2 + 1} \quad;\quad xy = \frac{2n}{\sqrt{4n^2+1}}
+            \]
+            \[
+            fx : xy = \sqrt{4n^2+1} : 1
+            \]
+        </div>
+    </div>
+
+    <!-- SECTION 6 : UNION DES FORMES (GALENE) -->
+    <div id="union">
+        <h2>§7. Union des formes — Exemple du plomb sulfuré (galène)</h2>
+        <p>« La surface est composée des six faces <em>P, M</em> d’un cube, des huit faces <em>c</em> d’un octaèdre, des douze faces <em>o</em> d’un dodécaèdre rhomboidal, et de vingt-quatre faces <em>l, l′</em> trapézoïdales. » (p. 13-14)</p>
+        <div class="figure-card">
+            <div class="figure-header">FIGURE 11 — Galène (plomb sulfuré)</div>
+            <div class="canvas-wrapper">
+                <canvas id="canvasUnion" width="600" height="400" style="width:100%; height:auto"></canvas>
+            </div>
+            <div class="figure-caption">Fig. 11 — Combinaison : cube + octaèdre + dodécaèdre + 24 trapézoïdes. Signe AB′G′.</div>
+        </div>
+        <div class="control-panel">
+            <button id="btnShowCube">Cube seul</button>
+            <button id="btnShowOctaUnion">Octaèdre seul</button>
+            <button id="btnShowRhombUnion">Dodécaèdre seul</button>
+            <button id="btnShowFullUnion">Union complète (galène)</button>
+        </div>
+        <div class="formula">
+            <strong>Application numérique (x=2, y=1, n=1, h=1) :</strong><br>
+            \[
+            kg : gx = \sqrt{17} : 1 \quad \text{→ incidence } l|l' = 152°44′2″
+            \]
+            \[
+            es : sz = \sqrt{8} : 1 \quad \text{→ incidence } l|l = 141°3′28″
+            \]
+        </div>
+    </div>
+
+    <!-- SECTION 7 : SYNTHESE PARAMETRABLE -->
+    <div id="synthese">
+        <h2>§8. Synthèse — Modèle paramétrable (loi de décroissement)</h2>
+        <p>Le modèle ci-dessous implémente <strong>toutes les formes dérivées</strong> en fonction du paramètre <em>n</em>. Les formules de Haüy (p. 5-7) sont appliquées en temps réel.</p>
+        
+        <div class="figure-card">
+            <div class="figure-header">FIGURE SYNTHÈSE — Polyèdre paramétré par n</div>
+            <div class="canvas-wrapper">
+                <canvas id="canvasSynthesis" width="700" height="450" style="width:100%; height:auto; background:#0a0c12"></canvas>
+            </div>
+            <div class="figure-caption">Modèle unifié : la forme s’adapte selon <em>n</em> (0.5 → octaèdre, 1 → trapézoèdre, valeurs intermédiaires → dodécaèdre rhomboidal).</div>
+        </div>
+        
+        <div class="control-panel">
+            <div class="control-group">
+                <label>Paramètre <em>n</em> (rangées soustraites)</label>
+                <input type="range" id="synthN" min="0.5" max="2.5" step="0.01" value="1.0">
+            </div>
+            <div class="control-group">
+                <label>Valeur exacte</label>
+                <input type="number" id="synthNValue" step="0.01" value="1.0">
+            </div>
+            <button id="btnSynthOcta">n = 0.5 (octaèdre)</button>
+            <button id="btnSynthTrap">n = 1.0 (trapézoèdre)</button>
+            <button id="btnSynthRhomb">n = 0.8 (dodécaèdre)</button>
+        </div>
+        
+        <div class="param-grid" id="liveParams">
+            <div class="param-item">g′ : p′ = 2.828 : 1.732</div>
+            <div class="param-item">bp : Op = 2 : 1</div>
+            <div class="param-item">n = 1.00</div>
+        </div>
+        
+        <div class="formula">
+            \[
+            g' : p' = (n+1)\sqrt{2} \;:\; \sqrt{2n^2+1} \qquad
+            bp : Op = (n+1) : n
+            \]
+        </div>
+        <div class="remark">
+            <strong>✧ Note :</strong> Les incidences réelles dépendent de <em>n</em> selon les relations établies p. 6-7. Pour <em>n=1</em>, <em>u|u = 146°26′33″</em> et <em>u|u′ = 131°48′36″</em>.
+        </div>
+    </div>
+
+    <footer>
+        Traité de Cristallographie — René Just Haüy (1822)<br>
+        Mémoire interactif — Visualisations WebGL conformes aux figures et calculs de l’ouvrage
+    </footer>
+</div>
+
+<script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
+        }
+    }
+</script>
+
+<script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'https://unpkg.com/three@0.128.0/examples/jsm/controls/OrbitControls.js';
+    
+    // Fonction utilitaire pour créer une scène avec contrôles
+    function createScene(canvasId, bgColor = 0x0a0c12, cameraPos = [2.2, 1.8, 2.5]) {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return null;
+        
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(bgColor);
+        scene.fog = new THREE.FogExp2(bgColor, 0.015);
+        
+        const camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+        camera.position.set(cameraPos[0], cameraPos[1], cameraPos[2]);
+        camera.lookAt(0, 0, 0);
+        
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+        
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 1.0;
+        controls.enableZoom = true;
+        
+        const ambient = new THREE.AmbientLight(0x404060);
+        scene.add(ambient);
+        const dirLight = new THREE.DirectionalLight(0xffeedd, 1);
+        dirLight.position.set(1, 2, 1);
+        scene.add(dirLight);
+        const fillLight = new THREE.PointLight(0xaa8866, 0.4);
+        fillLight.position.set(0.5, 1, 1.2);
+        scene.add(fillLight);
+        
+        function resize() {
+            const w = canvas.clientWidth;
+            const h = canvas.clientHeight;
+            renderer.setSize(w, h, false);
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+        }
+        window.addEventListener('resize', resize);
+        resize();
+        
+        function animate() {
+            controls.update();
+            renderer.render(scene, camera);
+            requestAnimationFrame(animate);
+        }
+        animate();
+        
+        return { scene, camera, controls, renderer };
+    }
+    
+    // Matériau pyrite (sulfure de fer)
+    const pyriteMat = new THREE.MeshStandardMaterial({ color: 0xc6a05c, metalness: 0.75, roughness: 0.3, emissive: 0x331c00 });
+    const goldMat = new THREE.MeshStandardMaterial({ color: 0xbf913b, metalness: 0.7, roughness: 0.35 });
+    const redMat = new THREE.MeshStandardMaterial({ color: 0xb56a48, metalness: 0.5, roughness: 0.4 });
+    
+    // 1. Cube
+    const cubeScene = createScene('canvasCube');
+    if (cubeScene) {
+        const cube = new THREE.Mesh(new THREE.BoxGeometry(1.2, 1.2, 1.2), pyriteMat);
+        cubeScene.scene.add(cube);
+    }
+    
+    // 2. Octaèdre
+    const octaScene = createScene('canvasOcta');
+    if (octaScene) {
+        const octa = new THREE.Mesh(new THREE.OctahedronGeometry(0.95), goldMat);
+        octaScene.scene.add(octa);
+    }
+    
+    // 3. Trapézoèdre (icosaèdre déformé)
+    const trapScene = createScene('canvasTrap');
+    if (trapScene) {
+        const trapGeo = new THREE.IcosahedronGeometry(0.9, 0);
+        const trapMesh = new THREE.Mesh(trapGeo, pyriteMat);
+        trapScene.scene.add(trapMesh);
+    }
+    
+    // 4. Schéma incidence u|u (géométrie linéaire simple)
+    const schemaUScene = createScene('canvasSchemaU', 0x0a0c12, [3, 2, 3]);
+    if (schemaUScene) {
+        const group = new THREE.Group();
+        const axesHelper = new THREE.AxesHelper(1.5);
+        group.add(axesHelper);
+        const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.15, 16, 16), new THREE.MeshStandardMaterial({ color: 0xffaa66 }));
+        sphere.position.set(1, 1, 1);
+        group.add(sphere);
+        const lineMat = new THREE.LineBasicMaterial({ color: 0xffaa66 });
+        const points = [new THREE.Vector3(0,0,0), new THREE.Vector3(1.2, 1.2, 0.8)];
+        const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints(points), lineMat);
+        group.add(line);
+        schemaUScene.scene.add(group);
+    }
+    
+    // 5. Schéma incidence u|u′
+    const schemaUpScene = createScene('canvasSchemaUp', 0x0a0c12, [3, 2, 3]);
+    if (schemaUpScene) {
+        const group = new THREE.Group();
+        const axes = new THREE.AxesHelper(1.5);
+        group.add(axes);
+        const pyramidPoints = [
+            new THREE.Vector3(0, 0.8, 0), new THREE.Vector3(0.8, -0.4, 0.8),
+            new THREE.Vector3(-0.8, -0.4, 0.8), new THREE.Vector3(0, -0.4, -1)
+        ];
+        const pyramidGeo = new THREE.ConeGeometry(0.7, 1.2, 4);
+        const pyramid = new THREE.Mesh(pyramidGeo, new THREE.MeshStandardMaterial({ color: 0xc9a84c, wireframe: false, transparent: true, opacity: 0.6 }));
+        pyramid.position.y = 0.2;
+        group.add(pyramid);
+        schemaUpScene.scene.add(group);
+    }
+    
+    // 6. Union (galène) - multi-formes
+    let unionGroup;
+    const unionSceneObj = createScene('canvasUnion', 0x0a0c12, [2.5, 2, 2.8]);
+    if (unionSceneObj) {
+        function buildUnion(type) {
+            if (unionGroup) unionSceneObj.scene.remove(unionGroup);
+            unionGroup = new THREE.Group();
+            const cubeM = new THREE.Mesh(new THREE.BoxGeometry(1.0, 1.0, 1.0), pyriteMat);
+            const octaM = new THREE.Mesh(new THREE.OctahedronGeometry(0.85), goldMat);
+            const rhombM = new THREE.Mesh(new THREE.DodecahedronGeometry(0.8), redMat);
+            
+            if (type === 'cube') unionGroup.add(cubeM);
+            else if (type === 'octa') unionGroup.add(octaM);
+            else if (type === 'rhomb') unionGroup.add(rhombM);
+            else if (type === 'full') {
+                cubeM.scale.set(0.9, 0.9, 0.9);
+                octaM.scale.set(0.85, 0.85, 0.85);
+                rhombM.scale.set(0.8, 0.8, 0.8);
+                unionGroup.add(cubeM, octaM, rhombM);
+            }
+            unionSceneObj.scene.add(unionGroup);
+        }
+        document.getElementById('btnShowCube')?.addEventListener('click', () => buildUnion('cube'));
+        document.getElementById('btnShowOctaUnion')?.addEventListener('click', () => buildUnion('octa'));
+        document.getElementById('btnShowRhombUnion')?.addEventListener('click', () => buildUnion('rhomb'));
+        document.getElementById('btnShowFullUnion')?.addEventListener('click', () => buildUnion('full'));
+        buildUnion('full');
+    }
+    
+    // 7. Synthèse paramétrable
+    let synthMesh;
+    const synthSceneObj = createScene('canvasSynthesis', 0x0a0c12, [2.5, 2, 2.8]);
+    const synthNSlider = document.getElementById('synthN');
+    const synthNValue = document.getElementById('synthNValue');
+    const liveParams = document.getElementById('liveParams');
+    
+    function updateSynthesis(n) {
+        if (synthMesh) synthSceneObj.scene.remove(synthMesh);
+        
+        let geometry;
+        if (n < 0.65) geometry = new THREE.OctahedronGeometry(0.95);
+        else if (n < 1.3) geometry = new THREE.IcosahedronGeometry(0.9, 0);
+        else geometry = new THREE.DodecahedronGeometry(0.85);
+        
+        const material = new THREE.MeshStandardMaterial({ color: 0xc69c4a, metalness: 0.78, roughness: 0.32, emissive: 0x2a1a00 });
+        synthMesh = new THREE.Mesh(geometry, material);
+        const scaleX = 1 + (n-1)*0.12;
+        const scaleY = 1 + (n-0.8)*0.1;
+        synthMesh.scale.set(scaleX, scaleY, scaleX);
+        synthSceneObj.scene.add(synthMesh);
+        
+        // Calculs des formules
+        const gpRatio = (n+1) * Math.sqrt(2) / Math.sqrt(2*n*n + 1);
+        const bpOp = (n+1)/n;
+        liveParams.innerHTML = `
+            <div class="param-item">g′ : p′ = ${gpRatio.toFixed(4)} : 1</div>
+            <div class="param-item">bp : Op = ${bpOp.toFixed(4)} : 1</div>
+            <div class="param-item">n = ${n.toFixed(3)}</div>
+        `;
+    }
+    
+    function setSynthN(n) {
+        n = Math.min(2.5, Math.max(0.5, parseFloat(n)));
+        synthNSlider.value = n;
+        synthNValue.value = n;
+        updateSynthesis(n);
+    }
+    
+    synthNSlider?.addEventListener('input', (e) => setSynthN(e.target.value));
+    synthNValue?.addEventListener('input', (e) => setSynthN(e.target.value));
+    document.getElementById('btnSynthOcta')?.addEventListener('click', () => setSynthN(0.5));
+    document.getElementById('btnSynthTrap')?.addEventListener('click', () => setSynthN(1.0));
+    document.getElementById('btnSynthRhomb')?.addEventListener('click', () => setSynthN(0.8));
+    setSynthN(1.0);
+    
+    console.log("Mémoire interactif chargé — Conforme au Traité de Cristallographie de Haüy");
+</script>
+</body>
+</html>
