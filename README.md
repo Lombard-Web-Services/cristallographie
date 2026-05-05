@@ -96,32 +96,27 @@ Où **n** est le paramètre de la loi de décroissement :
 
 ## Visualisations interactives
 
-### 1. Décroissement paramétrique (WebGL)
-
-Visualisation 3D temps réel d'un trapézoèdre cubique avec shaders personnalisés, éclairage Phong et navigation interactive.
-
-🔗 [https://lombard-web-services.github.io/cristallographie/De_la_decroissance.html](https://lombard-web-services.github.io/cristallographie/De_la_decroissance.html)
-
-**Fonctionnalités :**
-- Slider paramétrique **n** (0.5 à 3)
-- Rotation 3D (clic-glisser / tactile)
-- Zoom molette
-- Auto-rotation
-- Affichage des valeurs calculées en temps réel
-- Arêtes en fil de fer
-
-### 2. Narration structurée
+### 1. Narration structurée
 
 Parcours guidé à travers la théorie des décroissements, avec explications textuelles synchronisées aux visualisations.
 
 🔗 [https://lombard-web-services.github.io/cristallographie/index.html](https://lombard-web-services.github.io/cristallographie/index.html)
 
+### 2. Décroissement paramétrique (WebGL)
+
+Visualisation 3D temps réel d'un trapézoèdre cubique avec shaders personnalisés, éclairage Phong et navigation interactive.
+
+🔗 [https://lombard-web-services.github.io/cristallographie/De_la_decroissance.html](https://lombard-web-services.github.io/cristallographie/De_la_decroissance.html)
+
 ### 3. Formes dérivées du cube
 
-Focus sur les transformations géométriques du cube vers le trapézoèdre et l'octaèdre, avec calculs des rapports et incidences.
+Focus sur les transformations géométriques du cube vers le trapézoèdre et l'octaèdre, avec calculs des rapports et incidence savec le décroissement par soustraction.
 
-🔗 [https://github.com/Lombard-Web-Services/cristallographie/blob/main/Decroissement_sur_le_cube.html](Décroissement sur le cube)
+🔗 [https://lombard-web-services.github.io/cristallographie/Decroissement_sur_le_cube.html](https://lombard-web-services.github.io/cristallographie/Decroissement_sur_le_cube.html)
 
+### 4. La loi de superposition
+Découvrez comment est utilisé la loi de superposition
+🔗 [https://lombard-web-services.github.io/cristallographie/Loi_de_superposition.html](https://lombard-web-services.github.io/cristallographie/Loi_de_superposition.html)
 ---
 
 ## Le fer sulfuré comme cas d'étude
