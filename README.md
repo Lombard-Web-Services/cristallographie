@@ -120,7 +120,7 @@ Parcours guidé à travers la théorie des décroissements, avec explications te
 
 Focus sur les transformations géométriques du cube vers le trapézoèdre et l'octaèdre, avec calculs des rapports et incidences.
 
-🔗 [https://lombard-web-services.github.io/cristallographie/trapezoedre_octaedre.html](https://lombard-web-services.github.io/cristallographie/trapezoedre_octaedre.html)
+🔗 [https://github.com/Lombard-Web-Services/cristallographie/blob/main/Decroissement_sur_le_cube.html](Décroissement sur le cube)
 
 ---
 
