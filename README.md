@@ -7,7 +7,7 @@
 
 ## À propos
 
-Ce projet est une **exploration interactive et visuelle** de la cristallographie historique, centrée sur la théorie des décroissements développée par **René Just Haüy** dans son traité de 1822. À travers des visualisations WebGL, des animations paramétriques et une narration structurée, nous rendons accessibles des concepts cristallographiques fondamentaux qui ont jeté les bases de la minéralogie moderne.
+Ce projet est une **exploration interactive et visuelle** de la cristallographie historique, centrée sur la théorie des décroissements développée par **René Just Haüy** dans son traité de 1822. À travers des visualisations WebGL, des animations paramétriques et une narration structurée, j'ai décidé de rendre accessibles des concepts cristallographiques fondamentaux qui ont jeté les bases de la minéralogie moderne.
 
 Le projet se concentre notamment sur le **fer sulfuré** (pyrite, marcasite et variétés) comme fil rouge pédagogique — un minéral emblématique dont les multiples formes cristallines illustrent parfaitement la théorie des décroissements.
 
@@ -103,18 +103,21 @@ Parcours guidé à travers la théorie des décroissements, avec explications te
 🔗 [https://lombard-web-services.github.io/cristallographie/index.html](https://lombard-web-services.github.io/cristallographie/index.html)
 
 ### 2. Décroissement paramétrique (WebGL)
+![Décroissement paramétrique](de_la_decroissance.png)
 
 Visualisation 3D temps réel d'un trapézoèdre cubique avec shaders personnalisés, éclairage Phong et navigation interactive.
 
 🔗 [https://lombard-web-services.github.io/cristallographie/De_la_decroissance.html](https://lombard-web-services.github.io/cristallographie/De_la_decroissance.html)
 
 ### 3. Formes dérivées du cube
+![Formes dérivées du cube](Decroissement_sur_le_cube.png)
 
 Focus sur les transformations géométriques du cube vers le trapézoèdre et l'octaèdre, avec calculs des rapports et incidence savec le décroissement par soustraction.
 
 🔗 [https://lombard-web-services.github.io/cristallographie/Decroissement_sur_le_cube.html](https://lombard-web-services.github.io/cristallographie/Decroissement_sur_le_cube.html)
 
 ### 4. La loi de superposition
+![Loi de superposition](Loi_de_superposition.png)
 
 Découvrez comment est appliqué la loi de superposition par Haüy.
 
@@ -162,7 +165,7 @@ Ce projet combine :
 ## Crédits & Références
 
 - **René Just Haüy** — *Traité de minéralogie* (1822), tome I, pages 5–8, figures 6 et 7
-- **Readme généré avec Kimi** (Moonshot AI)
+- **Readme généré avec Kimi** (Moonshot AI) Mais corrigé encore et encore... Idées corellées sur Moult-AI.
 - Projet développé par **Lombard Web Services**
 
 ---
@@ -174,6 +177,6 @@ Ce projet est open source. Les ressources historiques (traité de Haüy) sont da
 ---
 
 <p align="center">
-  <em>"La nature ne fait rien en vain, et le moins qu'elle peut."</em><br>
+  <em>"Si l'air en servant de véhicule à la parole, nous met en commerce de pensées avec nos semblables, la lumière ajoute un grand prix à ce commerce, en nous rendant présente leur image, qui en elle même a tant de choses à nous dire."</em><br>
   <strong>— René Just Haüy</strong>
 </p>
