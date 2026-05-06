@@ -115,8 +115,11 @@ Focus sur les transformations géométriques du cube vers le trapézoèdre et l'
 🔗 [https://lombard-web-services.github.io/cristallographie/Decroissement_sur_le_cube.html](https://lombard-web-services.github.io/cristallographie/Decroissement_sur_le_cube.html)
 
 ### 4. La loi de superposition
-Découvrez comment est utilisé la loi de superposition
+
+Découvrez comment est appliqué la loi de superposition par Haüy.
+
 🔗 [https://lombard-web-services.github.io/cristallographie/Loi_de_superposition.html](https://lombard-web-services.github.io/cristallographie/Loi_de_superposition.html)
+
 ---
 
 ## Le fer sulfuré comme cas d'étude
