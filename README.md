@@ -172,7 +172,7 @@ Ce projet combine :
 
 ## Licence
 
-Ce projet est open source. Les ressources historiques (traité de Haüy) sont dans le domaine public.
+Ce projet est open source. Les ressources historiques (traité de Haüy) sont dans le domaine public. Script par : Deepseek
 
 ---
 
